@@ -1,0 +1,177 @@
+---
+import { GALLERY_IMAGES } from "../../const/gallery";
+import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
+---
+
+<section id="galeria" class="bg-white px-6 py-16 lg:px-8 lg:py-20">
+	<div class="mx-auto max-w-7xl">
+		<div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+			<div>
+				<p
+					class="text-xs font-bold uppercase tracking-[0.26em] text-[var(--color-primary-soft)]"
+				>
+					Galería
+				</p>
+				<h2
+					class="mt-3 font-serif text-4xl leading-tight text-[var(--color-primary-dark)] sm:text-5xl"
+				>
+					Inspiración para tu próxima cita
+				</h2>
+			</div>
+
+			<div class="max-w-2xl lg:justify-self-end">
+				<p class="text-sm leading-7 text-[var(--color-text-muted)]">
+					Explora acabados, tonos y detalles para encontrar una idea que se
+					adapte a tu estilo. Guarda tu favorita y consúltanos cómo llevarla a
+					tus uñas.
+				</p>
+				<div
+					class="mt-5 inline-flex items-center gap-3 border-l border-[var(--color-accent)] pl-4 text-sm font-bold text-[var(--color-primary)]"
+				>
+					<span class="font-serif text-3xl leading-none"
+						>{GALLERY_IMAGES.length}</span
+					>
+					diseños seleccionados
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="mt-10 grid auto-rows-[220px] gap-4 sm:grid-cols-2 lg:grid-cols-6"
+		>
+			{
+				GALLERY_IMAGES.map((image, index) => (
+					<button
+						type="button"
+						class:list={[
+							"group relative overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] text-left shadow-[var(--shadow-soft)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-border-strong)]",
+							index === 0 || index === 5
+								? "sm:row-span-2 lg:col-span-2"
+								: "lg:col-span-1",
+							index === 1 || index === 4 ? "lg:col-span-2" : "",
+						]}
+						data-gallery-trigger
+						data-gallery-src={image.src}
+						data-gallery-alt={image.alt}
+					>
+						<img
+							src={image.src}
+							alt={image.alt}
+							width={image.width}
+							height={image.height}
+							loading={index < 2 ? "eager" : "lazy"}
+							decoding="async"
+							class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+						/>
+						<span
+							class="absolute inset-0 bg-[linear-gradient(180deg,transparent_42%,rgba(58,29,36,0.36))] opacity-0 transition duration-300 group-hover:opacity-100"
+							aria-hidden="true"
+						/>
+						<span class="absolute bottom-4 left-4 rounded-full bg-white/82 px-3 py-2 text-xs font-bold text-[var(--color-primary)] opacity-0 shadow-[var(--shadow-soft)] backdrop-blur-md transition duration-300 group-hover:opacity-100">
+							Ver en grande
+						</span>
+					</button>
+				))
+			}
+		</div>
+
+		<div class="mt-8 flex justify-center">
+			<a
+				href="https://www.instagram.com/adelanails.artist/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[var(--color-primary-soft)] bg-white px-6 text-sm font-bold text-[var(--color-primary)] transition hover:bg-[var(--color-bg-soft)]"
+			>
+				Ver más diseños
+				<ExternalLinkIcon class="size-4" />
+			</a>
+		</div>
+	</div>
+</section>
+
+<div
+	class="gallery-modal fixed inset-0 z-[80] hidden items-center justify-center bg-[rgba(58,29,36,0.72)] px-4 py-6 backdrop-blur-md"
+	data-gallery-modal
+	aria-hidden="true"
+>
+	<button
+		type="button"
+		class="absolute inset-0 cursor-default"
+		aria-label="Cerrar imagen"
+		data-gallery-close
+	>
+	</button>
+
+	<div
+		class="relative z-10 max-h-[50dvh] w-full max-w-[min(92vw,720px)] overflow-hidden rounded-2xl p-2 shadow-[var(--shadow-card)]"
+		role="dialog"
+		aria-modal="true"
+		aria-label="Vista ampliada de diseño de uñas"
+	>
+		<button
+			type="button"
+			class="absolute right-4 top-4 z-20 grid size-10 place-items-center rounded-full bg-white/88 text-[var(--color-primary)] shadow-[var(--shadow-soft)] transition hover:bg-white"
+			aria-label="Cerrar imagen"
+			data-gallery-close
+		>
+			<span class="relative grid size-4 place-items-center">
+				<span class="absolute h-0.5 w-4 rotate-45 rounded-full bg-current"
+				></span>
+				<span class="absolute h-0.5 w-4 -rotate-45 rounded-full bg-current"
+				></span>
+			</span>
+		</button>
+
+		<img
+			src=""
+			alt=""
+			class="aspect-square w-full rounded-xl object-contain"
+			data-gallery-modal-image
+		/>
+	</div>
+</div>
+
+<script>
+	const galleryModal = document.querySelector("[data-gallery-modal]");
+	const galleryModalImage = document.querySelector(
+		"[data-gallery-modal-image]",
+	);
+	const galleryTriggers = document.querySelectorAll("[data-gallery-trigger]");
+	const galleryCloseButtons = document.querySelectorAll("[data-gallery-close]");
+
+	const setGalleryModal = (isOpen) => {
+		if (!(galleryModal instanceof HTMLElement)) {
+			return;
+		}
+
+		galleryModal.classList.toggle("hidden", !isOpen);
+		galleryModal.classList.toggle("flex", isOpen);
+		galleryModal.setAttribute("aria-hidden", String(!isOpen));
+		document.documentElement.classList.toggle("overflow-hidden", isOpen);
+	};
+
+	galleryTriggers.forEach((trigger) => {
+		trigger.addEventListener("click", () => {
+			if (
+				!(trigger instanceof HTMLElement) ||
+				!(galleryModalImage instanceof HTMLImageElement)
+			) {
+				return;
+			}
+
+			galleryModalImage.src = trigger.dataset.gallerySrc ?? "";
+			galleryModalImage.alt = trigger.dataset.galleryAlt ?? "";
+			setGalleryModal(true);
+		});
+	});
+
+	galleryCloseButtons.forEach((button) => {
+		button.addEventListener("click", () => setGalleryModal(false));
+	});
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			setGalleryModal(false);
+		}
+	});
+</script>

@@ -1,0 +1,140 @@
+---
+import { BRAND, NAV_ITEMS, RESERVATION_URL } from "../../const/navigation";
+---
+
+<button
+	type="button"
+	class="group inline-grid size-11 place-items-center rounded-full border border-[var(--color-border-strong)] bg-white/55 text-[var(--color-primary)] shadow-[var(--shadow-soft)] backdrop-blur-md transition hover:bg-white/80 lg:hidden"
+	aria-label="Abrir menú"
+	aria-expanded="false"
+	aria-controls="mobile-menu"
+	data-menu-toggle
+>
+	<span class="relative grid size-5 place-items-center">
+		<span
+			class="absolute h-0.5 w-5 -translate-y-1.5 rounded-full bg-current transition duration-300 group-data-[open=true]:translate-y-0 group-data-[open=true]:rotate-45"
+		></span>
+		<span
+			class="absolute h-0.5 w-5 rounded-full bg-current transition duration-200 group-data-[open=true]:scale-x-0"
+		></span>
+		<span
+			class="absolute h-0.5 w-5 translate-y-1.5 rounded-full bg-current transition duration-300 group-data-[open=true]:translate-y-0 group-data-[open=true]:-rotate-45"
+		></span>
+	</span>
+</button>
+
+<div
+	id="mobile-menu"
+	class="mobile-menu-panel fixed inset-0 lg:hidden"
+	data-mobile-menu
+	data-open="false"
+>
+	<button
+		type="button"
+		class="mobile-menu-backdrop absolute inset-0 bg-[rgba(58,29,36,0.18)] backdrop-blur-sm"
+		aria-label="Cerrar menú"
+		data-mobile-menu-close
+	></button>
+
+	<div
+		class="mobile-menu-sheet absolute right-3 top-3 flex h-[calc(100dvh-24px)] w-[min(88vw,390px)] flex-col rounded-[1.5rem] border border-[var(--color-border)] bg-[rgba(255,250,247,0.92)] p-6 shadow-[var(--shadow-card)] backdrop-blur-xl"
+	>
+		<div class="flex items-start justify-between gap-4">
+			<div>
+				<p
+					class="text-[0.62rem] font-bold uppercase tracking-[0.26em] text-[var(--color-accent)]"
+				>
+					Navegación
+				</p>
+				<p class="mt-2 font-serif text-3xl text-[var(--color-primary-dark)]">
+					{BRAND.name}
+				</p>
+			</div>
+
+			<button
+				type="button"
+				class="grid size-10 shrink-0 place-items-center rounded-full border border-[var(--color-border)] bg-white/68 text-[var(--color-primary)] transition hover:bg-white"
+				aria-label="Cerrar menú"
+				data-mobile-menu-close
+			>
+				<span class="relative grid size-4 place-items-center">
+					<span class="absolute h-0.5 w-4 rotate-45 rounded-full bg-current"></span>
+					<span class="absolute h-0.5 w-4 -rotate-45 rounded-full bg-current"></span>
+				</span>
+			</button>
+		</div>
+
+		<ul class="mt-10 space-y-2">
+			{
+				NAV_ITEMS.map((item, index) => (
+					<li>
+						<a
+							href={item.href}
+							class="mobile-menu-link group flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 transition hover:border-[var(--color-border)] hover:bg-white/62"
+							style={`--menu-index: ${index}`}
+							data-mobile-menu-link
+						>
+							<span class="font-serif text-3xl text-[var(--color-primary-dark)]">
+								{item.label}
+							</span>
+							<span class="text-xs font-bold text-[var(--color-accent)]">
+								{String(index + 1).padStart(2, "0")}
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<div class="mt-auto border-t border-[var(--color-border)] pt-5">
+			<p class="mb-4 text-sm leading-6 text-[var(--color-text-muted)]">
+				Soft Gel, Polygel, Semipermanente, Rubber y Gel de construcción.
+			</p>
+
+			<a
+				href={RESERVATION_URL}
+				class="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-[var(--color-primary)] px-5 text-sm font-bold text-white shadow-[var(--shadow-soft)] transition hover:bg-[var(--color-hover)]"
+				data-mobile-menu-link
+			>
+				Reserva tu cita
+			</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	const menuButton = document.querySelector("[data-menu-toggle]");
+	const mobileMenu = document.querySelector("[data-mobile-menu]");
+	const mobileMenuCloseButtons = document.querySelectorAll("[data-mobile-menu-close]");
+	const menuLinks = document.querySelectorAll("[data-mobile-menu-link]");
+
+	const setMenuState = (isOpen) => {
+		if (!(menuButton instanceof HTMLButtonElement) || !(mobileMenu instanceof HTMLElement)) {
+			return;
+		}
+
+		menuButton.dataset.open = String(isOpen);
+		menuButton.setAttribute("aria-expanded", String(isOpen));
+		menuButton.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+		mobileMenu.dataset.open = String(isOpen);
+	};
+
+	menuButton?.addEventListener("click", () => {
+		const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+		setMenuState(!isOpen);
+	});
+
+	menuLinks.forEach((link) => {
+		link.addEventListener("click", () => setMenuState(false));
+	});
+
+	mobileMenuCloseButtons.forEach((button) => {
+		button.addEventListener("click", () => setMenuState(false));
+	});
+
+	window.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			setMenuState(false);
+		}
+	});
+</script>

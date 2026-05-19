@@ -1,0 +1,65 @@
+---
+import { EXPERIENCE_POINTS } from "../../const/experience";
+---
+
+<section
+	id="experiencia"
+	class="bg-[var(--color-primary-deep)] px-6 py-16 text-white lg:px-8 lg:py-20"
+>
+	<div
+		class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center"
+	>
+		<div
+			class="relative aspect-square min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(255,250,247,0.14),rgba(196,154,108,0.08))] shadow-[var(--shadow-card)]"
+		>
+			<video
+				class="h-full w-full object-cover"
+				autoplay
+				muted
+				loop
+				playsinline
+				preload="metadata"
+				aria-label="Vista del proceso de diseño de uñas en el estudio"
+			>
+				<source src="/media/preview.mp4" type="video/mp4" />
+			</video>
+			<div
+				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(51,4,20,0.36))]"
+			>
+			</div>
+		</div>
+
+		<div>
+			<p
+				class="text-xs font-bold uppercase tracking-[0.26em] text-[var(--color-accent-light)]"
+			>
+				Nuestra experiencia
+			</p>
+			<h2 class="mt-4 font-serif text-4xl leading-tight text-white sm:text-5xl">
+				No es solo manicure. Es una experiencia cuidada al detalle.
+			</h2>
+			<p class="mt-5 max-w-xl text-sm leading-7 text-white/68">
+				Cada servicio se realiza con calma, criterio técnico y una mirada
+				estética para que tus uñas se vean bien y también se sientan cómodas.
+			</p>
+
+			<div class="mt-10 grid gap-6 sm:grid-cols-2">
+				{
+					EXPERIENCE_POINTS.map((point) => (
+						<article class="flex gap-4">
+							<span class="grid size-11 shrink-0 place-items-center rounded-full border border-[var(--color-accent)] font-serif text-sm text-[var(--color-accent-light)]">
+								{point.number}
+							</span>
+							<div>
+								<h3 class="font-bold text-white">{point.title}</h3>
+								<p class="mt-2 text-sm leading-6 text-white/64">
+									{point.description}
+								</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>

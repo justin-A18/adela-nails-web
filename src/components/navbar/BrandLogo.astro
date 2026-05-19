@@ -1,0 +1,22 @@
+---
+import { BRAND } from "../../const/navigation";
+---
+
+<a href={BRAND.href} class="flex items-center gap-3 text-[var(--color-primary-dark)]">
+	<span
+		class="grid size-10 place-items-center rounded-full border border-[var(--color-accent)] bg-white/45 text-sm font-serif font-bold text-[var(--color-accent)]"
+		aria-hidden="true"
+	>
+		{BRAND.mark}
+	</span>
+	<span class="leading-none">
+		<span class="block font-serif text-xl text-[var(--color-primary-dark)]">
+			{BRAND.name}
+		</span>
+		<span
+			class="mt-1 block text-[0.6rem] font-bold uppercase tracking-[0.26em] text-[var(--color-accent)]"
+		>
+			{BRAND.label}
+		</span>
+	</span>
+</a>
