@@ -1,46 +1,111 @@
-# Astro Starter Kit: Basics
+# Adela Nails Website
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Landing page for Adela Nails, a nail art and manicure studio. The site is built with Astro and Tailwind CSS, with a focus on fast static delivery, responsive layouts, optimized media, and a refined visual identity.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Features
 
-## 🚀 Project Structure
+- Responsive hero section with optimized Astro image delivery.
+- Mobile navigation with an animated sheet menu.
+- Services section for Soft Gel, Polygel, Semipermanente, Rubber, and Gel de construcción.
+- Experience section with a studio/process video.
+- Gallery section with nail design images and a lightbox modal.
+- Instagram CTA for more design inspiration.
+- Centralized content constants for navigation, services, experience points, and gallery images.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tech Stack
+
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Sharp](https://sharp.pixelplumbing.com/) for Astro image optimization
+- Static assets served from `public/`
+
+## Project Structure
 
 ```text
 /
 ├── public/
+│   ├── designs/          # Gallery images
+│   ├── media/            # Experience video
+│   ├── favicon.ico
 │   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── src/
+│   ├── assets/           # Optimized build-time assets
+│   ├── components/
+│   │   ├── icons/
+│   │   ├── navbar/
+│   │   └── sections/
+│   ├── const/            # Shared content constants
+│   ├── layouts/
+│   ├── pages/
+│   └── styles/
+├── astro.config.mjs
+├── package.json
+└── pnpm-lock.yaml
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Getting Started
 
-## 🧞 Commands
+Install dependencies:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+pnpm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Start the development server:
 
-## 👀 Want to learn more?
+```sh
+pnpm dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Build for production:
+
+```sh
+pnpm build
+```
+
+Preview the production build locally:
+
+```sh
+pnpm preview
+```
+
+## Content Editing
+
+Most repeated content lives in `src/const/`:
+
+- `src/const/navigation.ts`: brand, navigation items, reservation URL.
+- `src/const/services.ts`: service cards and featured service.
+- `src/const/experience.ts`: experience/trust points.
+- `src/const/gallery.ts`: gallery image metadata.
+
+Main page sections live in `src/components/sections/`:
+
+- `HeroSection.astro`
+- `ServicesSection.astro`
+- `ExperienceSection.astro`
+- `GallerySection.astro`
+
+## Media Notes
+
+- The hero image lives in `src/assets/hero-img.png` so Astro can generate optimized responsive images.
+- Gallery images live in `public/designs/` and are referenced by URL from `src/const/gallery.ts`.
+- The experience video lives in `public/media/preview.mp4`.
+
+For Lighthouse or performance checks, measure the production build:
+
+```sh
+pnpm build
+pnpm preview
+```
+
+Avoid measuring `pnpm dev`, since dev mode includes tooling scripts that do not represent production output.
+
+## Deployment
+
+This is a static Astro site. After running:
+
+```sh
+pnpm build
+```
+
+the production output is generated in `dist/` and can be deployed to any static hosting provider.
