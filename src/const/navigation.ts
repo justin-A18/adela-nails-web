@@ -29,3 +29,26 @@ export const NAV_ITEMS = [
 		href: "/#testimonios",
 	},
 ] as const;
+
+export const FOOTER_SERVICE_LINKS = [
+	{
+		label: "Soft Gel",
+		href: "/#servicios",
+	},
+	{
+		label: "Polygel",
+		href: "/#servicios",
+	},
+	{
+		label: "Semipermanente",
+		href: "/#servicios",
+	},
+	{
+		label: "Rubber",
+		href: "/#servicios",
+	},
+	{
+		label: "Gel de construcción",
+		href: "/#servicios",
+	},
+] as const;

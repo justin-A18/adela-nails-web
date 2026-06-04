@@ -1,0 +1,72 @@
+---
+import { CONTACT_INFO } from "../../const/contact";
+import { RESERVATION_URL } from "../../const/navigation";
+import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
+import HeroSparklesIcon from "../icons/HeroSparklesIcon.astro";
+import WhatsAppIcon from "../icons/WhatsAppIcon.astro";
+---
+
+<section class="px-6 py-16 lg:px-8 lg:py-20">
+	<div
+		class="scroll-reveal relative mx-auto grid max-w-7xl overflow-hidden rounded-2xl border border-white/10 bg-[var(--color-primary-deep)] p-7 text-white shadow-[var(--shadow-card)] sm:p-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:p-12"
+	>
+		<HeroSparklesIcon
+			class="pointer-events-none absolute right-8 top-8 size-20 text-[var(--color-accent-light)] opacity-35"
+		/>
+
+		<div class="relative z-10">
+			<p
+				class="text-xs font-bold uppercase tracking-[0.26em] text-[var(--color-accent-light)]"
+			>
+				Agenda tu cita
+			</p>
+			<h2 class="mt-4 max-w-3xl font-serif text-4xl leading-tight sm:text-5xl">
+				Tus próximas uñas favoritas empiezan con una buena asesoría.
+			</h2>
+			<p class="mt-5 max-w-2xl text-sm leading-7 text-white/68">
+				Envíanos tu idea, referencia o el tipo de servicio que tienes en mente.
+				Te ayudamos a elegir la técnica adecuada antes de reservar.
+			</p>
+
+			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+				<a
+					href={RESERVATION_URL}
+					class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-white px-6 text-sm font-bold text-[var(--color-primary)] transition hover:bg-[var(--color-bg-soft)]"
+				>
+					<WhatsAppIcon class="size-4" />
+					Reservar por WhatsApp
+				</a>
+				<a
+					href={CONTACT_INFO.instagram}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/28 px-6 text-sm font-bold text-white transition hover:border-white/60 hover:bg-white/8"
+				>
+					Ver inspiración
+					<ExternalLinkIcon class="size-4" />
+				</a>
+			</div>
+		</div>
+
+		<div
+			class="relative z-10 mt-10 grid gap-3 border-t border-white/12 pt-6 text-sm lg:mt-0 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
+		>
+			<div class="rounded-xl bg-white/8 p-4">
+				<p class="text-white/58">Ubicación</p>
+				<p class="mt-1 font-bold text-white">{CONTACT_INFO.address}</p>
+			</div>
+			<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+				<div class="rounded-xl bg-white/8 p-4">
+					<p class="text-white/58">Horario</p>
+					<p class="mt-1 font-bold text-white">
+						{CONTACT_INFO.schedule.weekdays}
+					</p>
+				</div>
+				<div class="rounded-xl bg-white/8 p-4">
+					<p class="text-white/58">Contacto</p>
+					<p class="mt-1 font-bold text-white">{CONTACT_INFO.phone}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

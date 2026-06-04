@@ -1,0 +1,145 @@
+---
+import { TESTIMONIAL_STATS, TESTIMONIALS } from "../../const/testimonials";
+
+const featuredTestimonial =
+	TESTIMONIALS.find((testimonial) => testimonial.featured) ?? TESTIMONIALS[0];
+---
+
+<section id="testimonios" class="bg-white px-6 py-16 lg:px-8 lg:py-24">
+	<div class="mx-auto max-w-7xl">
+		<div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+			<div class="scroll-reveal">
+				<p
+					class="text-xs font-bold uppercase tracking-[0.26em] text-[var(--color-primary-soft)]"
+				>
+					Testimonios
+				</p>
+				<h2
+					class="mt-3 font-serif text-4xl leading-tight text-[var(--color-primary-dark)] sm:text-5xl"
+				>
+					Clientas que vuelven por el detalle
+				</h2>
+			</div>
+
+			<p
+				class="scroll-reveal max-w-2xl text-sm leading-7 text-[var(--color-text-muted)] lg:justify-self-end"
+				style="--scroll-delay: 90ms"
+			>
+				La experiencia se nota en el acabado, pero también en cómo se vive la
+				cita: asesoría clara, higiene visible y un resultado pensado para tu
+				estilo.
+			</p>
+		</div>
+
+		<div class="mt-10 grid gap-5 lg:grid-cols-[1.04fr_1.46fr]">
+			<article
+				class="scroll-reveal relative overflow-hidden rounded-2xl bg-[var(--color-primary)] p-7 text-white shadow-[var(--shadow-card)] sm:p-8"
+			>
+				<div class="absolute right-6 top-6 font-serif text-8xl leading-none text-white/8">
+					"
+				</div>
+
+				<div class="flex gap-1 text-[var(--color-accent-light)]" aria-label="5 estrellas">
+					{Array.from({ length: featuredTestimonial.rating }).map(() => (
+						<svg
+							aria-hidden="true"
+							class="size-4 fill-current"
+							viewBox="0 0 20 20"
+						>
+							<path d="m10 1.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8L10 1.6Z" />
+						</svg>
+					))}
+				</div>
+
+				<p class="mt-7 font-serif text-3xl leading-tight text-white sm:text-4xl">
+					"{featuredTestimonial.quote}"
+				</p>
+
+				<div class="mt-8 flex items-center gap-4">
+					<div
+						class="grid size-12 place-items-center rounded-full bg-white/12 text-sm font-bold text-white"
+					>
+						{featuredTestimonial.name.slice(0, 1)}
+					</div>
+					<div>
+						<p class="font-bold text-white">{featuredTestimonial.name}</p>
+						<p class="mt-1 text-sm text-white/62">
+							{featuredTestimonial.location}
+						</p>
+					</div>
+				</div>
+			</article>
+
+			<div class="grid gap-5">
+				<div class="grid gap-3 sm:grid-cols-3">
+					{
+						TESTIMONIAL_STATS.map((stat, index) => (
+							<div
+								class="scroll-reveal rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5 shadow-[var(--shadow-soft)]"
+								style={`--scroll-delay: ${index * 80}ms`}
+							>
+								<p class="font-serif text-4xl leading-none text-[var(--color-primary)]">
+									{stat.value}
+								</p>
+								<p class="mt-3 text-sm font-bold leading-5 text-[var(--color-text)]">
+									{stat.label}
+								</p>
+							</div>
+						))
+					}
+				</div>
+
+				<div class="grid gap-4 md:grid-cols-3">
+					{
+						TESTIMONIALS.map((testimonial, index) => (
+							<article
+								class:list={[
+									"scroll-reveal flex min-h-[250px] flex-col rounded-2xl border bg-white p-5 shadow-[var(--shadow-soft)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-primary-soft)] hover:shadow-[var(--shadow-card)]",
+									testimonial.featured
+										? "border-[var(--color-primary-soft)]"
+										: "border-[var(--color-border)]",
+								]}
+								style={`--scroll-delay: ${120 + index * 70}ms`}
+							>
+								<div class="flex items-center justify-between gap-4">
+									<div class="flex gap-1 text-[var(--color-accent)]" aria-label="5 estrellas">
+										{Array.from({ length: testimonial.rating }).map(() => (
+											<svg
+												aria-hidden="true"
+												class="size-3.5 fill-current"
+												viewBox="0 0 20 20"
+											>
+												<path d="m10 1.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8L10 1.6Z" />
+											</svg>
+										))}
+									</div>
+									<span class="rounded-full bg-[var(--color-bg-soft)] px-3 py-1 text-xs font-bold text-[var(--color-primary)]">
+										{testimonial.highlight}
+									</span>
+								</div>
+
+								<p class="mt-5 text-sm leading-7 text-[var(--color-text-muted)]">
+									"{testimonial.quote}"
+								</p>
+
+								<div class="mt-auto flex items-center gap-3 pt-6">
+									<div class="grid size-10 place-items-center rounded-full bg-[var(--color-primary)] text-xs font-bold text-white">
+										{testimonial.name.slice(0, 1)}
+									</div>
+									<div>
+										<p class="text-sm font-bold text-[var(--color-text)]">
+											{testimonial.name}
+										</p>
+										<p class="mt-0.5 text-xs text-[var(--color-text-light)]">
+											{testimonial.location}
+										</p>
+									</div>
+								</div>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

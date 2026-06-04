@@ -1,14 +1,15 @@
 ---
-import { NAV_ITEMS } from "../../const/navigation";
+import { NAV_ITEMS } from '../../const/navigation';
 ---
 
 <ul
-	class="hidden items-center gap-9 text-sm font-medium text-[var(--color-text)] lg:flex"
->
+	class='hidden items-center gap-9 text-sm font-medium text-(--color-text) lg:flex'>
 	{
 		NAV_ITEMS.map((item) => (
 			<li>
-				<a href={item.href} class="transition hover:text-[var(--color-primary)]">
+				<a
+					href={item.href}
+					class='transition hover:text-(--color-primary)'>
 					{item.label}
 				</a>
 			</li>

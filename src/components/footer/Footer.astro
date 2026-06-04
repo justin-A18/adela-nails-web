@@ -1,0 +1,128 @@
+---
+import { CONTACT_INFO } from "../../const/contact";
+import { BRAND, FOOTER_SERVICE_LINKS, NAV_ITEMS } from "../../const/navigation";
+import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
+---
+
+<footer class="bg-[var(--color-bg)] px-6 pb-8 pt-12 lg:px-8">
+	<div class="mx-auto max-w-7xl">
+		<div class="grid gap-10 border-b border-[var(--color-border)] pb-10 lg:grid-cols-[1.25fr_0.85fr_0.9fr_1fr]">
+			<div>
+				<a
+					href={BRAND.href}
+					class="inline-flex items-center gap-3 text-[var(--color-primary-dark)]"
+				>
+					<span
+						class="grid size-12 place-items-center rounded-full border border-[var(--color-accent)] bg-white text-base font-serif font-bold text-[var(--color-accent)]"
+						aria-hidden="true"
+					>
+						{BRAND.mark}
+					</span>
+					<span class="leading-none">
+						<span
+							class="block font-serif text-2xl text-[var(--color-primary-dark)]"
+						>
+							{BRAND.name}
+						</span>
+						<span
+							class="mt-1 block text-[0.65rem] font-bold uppercase tracking-[0.26em] text-[var(--color-accent)]"
+						>
+							{BRAND.label}
+						</span>
+					</span>
+				</a>
+
+				<p class="mt-5 max-w-sm text-sm leading-7 text-[var(--color-text-muted)]">
+					Estudio de uñas especializado en técnicas de extensión, refuerzo y
+					color con asesoría personalizada.
+				</p>
+
+				<div class="mt-6 flex gap-3">
+					<a
+						href={CONTACT_INFO.instagram}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="grid size-10 place-items-center rounded-full border border-[var(--color-border-strong)] text-sm font-bold text-[var(--color-primary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
+						aria-label="Instagram de Adela Nails"
+					>
+						IG
+					</a>
+					<a
+						href={CONTACT_INFO.tiktok}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="grid size-10 place-items-center rounded-full border border-[var(--color-border-strong)] text-sm font-bold text-[var(--color-primary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
+						aria-label="TikTok de Adela Nails"
+					>
+						TK
+					</a>
+				</div>
+			</div>
+
+			<nav aria-label="Enlaces rápidos">
+				<h2 class="text-sm font-bold text-[var(--color-text)]">Enlaces</h2>
+				<ul class="mt-4 grid gap-3 text-sm text-[var(--color-text-muted)]">
+					{
+						NAV_ITEMS.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class="transition hover:text-[var(--color-primary)]"
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<nav aria-label="Servicios">
+				<h2 class="text-sm font-bold text-[var(--color-text)]">Servicios</h2>
+				<ul class="mt-4 grid gap-3 text-sm text-[var(--color-text-muted)]">
+					{
+						FOOTER_SERVICE_LINKS.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class="transition hover:text-[var(--color-primary)]"
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div>
+				<h2 class="text-sm font-bold text-[var(--color-text)]">Contacto</h2>
+				<ul class="mt-4 grid gap-3 text-sm leading-6 text-[var(--color-text-muted)]">
+					<li>{CONTACT_INFO.address}</li>
+					<li>{CONTACT_INFO.phone}</li>
+					<li>{CONTACT_INFO.email}</li>
+					<li>
+						{CONTACT_INFO.schedule.weekdays}<br />
+						{CONTACT_INFO.schedule.sunday}
+					</li>
+				</ul>
+				<a
+					href={CONTACT_INFO.instagram}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[var(--color-primary)]"
+				>
+					Ver Instagram
+					<ExternalLinkIcon class="size-4" />
+				</a>
+			</div>
+		</div>
+
+		<div
+			class="flex flex-col gap-3 pt-6 text-xs text-[var(--color-text-light)] sm:flex-row sm:items-center sm:justify-between"
+		>
+			<p>© 2026 {BRAND.name}. Todos los derechos reservados.</p>
+			<p>Diseño de uñas, técnica y estilo en Lima.</p>
+		</div>
+	</div>
+</footer>
