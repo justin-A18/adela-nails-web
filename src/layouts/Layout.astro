@@ -1,43 +1,61 @@
 ---
 import "../styles/global.css";
+
+const siteTitle =
+    "Adela Nails | Uñas Soft Gel, Polygel y Semipermanente en Lima";
+const siteDescription =
+    "Estudio de uñas en Lima especializado en Soft Gel, Polygel, Semipermanente, Rubber y Gel de construcción. Reserva tu cita por WhatsApp.";
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-		<script is:inline>
-			const revealItems = document.querySelectorAll(".scroll-reveal");
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" href="/logo.jpg" />
+        <title>{siteTitle}</title>
+        <meta name="description" content={siteDescription} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://adelanails.com/" />
 
-			if (
-				revealItems.length &&
-				"IntersectionObserver" in window &&
-				!window.matchMedia("(prefers-reduced-motion: reduce)").matches
-			) {
-				document.documentElement.classList.add("scroll-reveal-ready");
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="es_PE" />
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:url" content="https://adelanails.com/" />
+        <meta property="og:image" content="/logo.jpg" />
 
-				const revealObserver = new IntersectionObserver(
-					(entries, observer) => {
-						for (const entry of entries) {
-							if (!entry.isIntersecting) continue;
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={siteTitle} />
+        <meta name="twitter:description" content={siteDescription} />
+        <meta name="twitter:image" content="/logo.jpg" />
+    </head>
+    <body>
+        <slot />
+        <script is:inline>
+            const revealItems = document.querySelectorAll(".scroll-reveal");
 
-							entry.target.classList.add("is-visible");
-							observer.unobserve(entry.target);
-						}
-					},
-					{ threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
-				);
+            if (
+                revealItems.length &&
+                "IntersectionObserver" in window &&
+                !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ) {
+                document.documentElement.classList.add("scroll-reveal-ready");
 
-				revealItems.forEach((item) => revealObserver.observe(item));
-			}
-		</script>
-	</body>
+                const revealObserver = new IntersectionObserver(
+                    (entries, observer) => {
+                        for (const entry of entries) {
+                            if (!entry.isIntersecting) continue;
+
+                            entry.target.classList.add("is-visible");
+                            observer.unobserve(entry.target);
+                        }
+                    },
+                    { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+                );
+
+                revealItems.forEach((item) => revealObserver.observe(item));
+            }
+        </script>
+    </body>
 </html>

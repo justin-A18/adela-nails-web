@@ -2,6 +2,7 @@
 import { CONTACT_INFO } from "../../const/contact";
 import { BRAND, FOOTER_SERVICE_LINKS, NAV_ITEMS } from "../../const/navigation";
 import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
+import InstagramIcon from "../icons/InstagramIcon.astro";
 ---
 
 <footer class="bg-[var(--color-bg)] px-6 pb-8 pt-12 lg:px-8">
@@ -12,12 +13,12 @@ import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
 					href={BRAND.href}
 					class="inline-flex items-center gap-3 text-[var(--color-primary-dark)]"
 				>
-					<span
-						class="grid size-12 place-items-center rounded-full border border-[var(--color-accent)] bg-white text-base font-serif font-bold text-[var(--color-accent)]"
+					<img
+						src="/logo.jpg"
+						alt=""
+						class="size-12 rounded-full border border-[var(--color-accent)] bg-white object-cover shadow-[var(--shadow-soft)]"
 						aria-hidden="true"
-					>
-						{BRAND.mark}
-					</span>
+					/>
 					<span class="leading-none">
 						<span
 							class="block font-serif text-2xl text-[var(--color-primary-dark)]"
@@ -45,16 +46,7 @@ import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
 						class="grid size-10 place-items-center rounded-full border border-[var(--color-border-strong)] text-sm font-bold text-[var(--color-primary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
 						aria-label="Instagram de Adela Nails"
 					>
-						IG
-					</a>
-					<a
-						href={CONTACT_INFO.tiktok}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="grid size-10 place-items-center rounded-full border border-[var(--color-border-strong)] text-sm font-bold text-[var(--color-primary)] transition hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white"
-						aria-label="TikTok de Adela Nails"
-					>
-						TK
+						<InstagramIcon class="size-5" />
 					</a>
 				</div>
 			</div>
@@ -98,13 +90,7 @@ import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
 			<div>
 				<h2 class="text-sm font-bold text-[var(--color-text)]">Contacto</h2>
 				<ul class="mt-4 grid gap-3 text-sm leading-6 text-[var(--color-text-muted)]">
-					<li>{CONTACT_INFO.address}</li>
 					<li>{CONTACT_INFO.phone}</li>
-					<li>{CONTACT_INFO.email}</li>
-					<li>
-						{CONTACT_INFO.schedule.weekdays}<br />
-						{CONTACT_INFO.schedule.sunday}
-					</li>
 				</ul>
 				<a
 					href={CONTACT_INFO.instagram}
@@ -112,6 +98,7 @@ import ExternalLinkIcon from "../icons/ExternalLinkIcon.astro";
 					rel="noopener noreferrer"
 					class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[var(--color-primary)]"
 				>
+					<InstagramIcon class="size-4" />
 					Ver Instagram
 					<ExternalLinkIcon class="size-4" />
 				</a>

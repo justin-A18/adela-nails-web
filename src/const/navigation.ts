@@ -5,7 +5,7 @@ export const BRAND = {
 	href: "/",
 } as const;
 
-export const RESERVATION_URL = "https://wa.me/";
+export const RESERVATION_URL = "https://wa.me/51917406930";
 
 export const NAV_ITEMS = [
 	{
@@ -23,10 +23,6 @@ export const NAV_ITEMS = [
 	{
 		label: "Galería",
 		href: "/#galeria",
-	},
-	{
-		label: "Testimonios",
-		href: "/#testimonios",
 	},
 ] as const;
 
